@@ -15,7 +15,9 @@ pipeline {
 	}
         stage('Docker pull $params.docker.hub') { 
             steps { 
-                   sh "docker pull ${params.docker.hub}:latest"
+                   sh '''
+			docker pull ${params.docker.hub}
+			'''
             }
         }
 	stage('Docker run') {
