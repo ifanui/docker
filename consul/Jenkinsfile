@@ -14,8 +14,8 @@ pipeline {
 		}
 	}
         stage('Docker pull from  docker hub') { 
-            steps { 
-                   sh "docker pull "${params.docker.hub}""
+            steps {
+		sh label: '', script: 'docker pull ${params.docker.hub}' 
             }
         }
 	stage('Docker run') {
