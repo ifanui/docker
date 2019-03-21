@@ -16,7 +16,7 @@ pipeline {
         stage('Docker pull from  docker hub') { 
             steps { 
                    sh '''
-			docker pull ${params.docker.hub}
+			docker pull ifanui/it-academy
 			'''
             }
         }
