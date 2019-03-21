@@ -15,12 +15,12 @@ pipeline {
 	}
         stage('Docker pull $params.docker.hub') { 
             steps { 
-                   sh ' docker pull ${params.docker.hub}:latest'
+                   sh "docker pull ${params.docker.hub}:latest"
             }
         }
 	stage('Docker run') {
 	    steps {
-		sh 'docker run   -p 8400:8400 -p 8500:8500   -p 8600:53/udp   -v $WORKSPACE/docker/consul/config:/consul/config -d  ifanui/it-academy:latest'
+		sh "docker run   -p 8400:8400 -p 8500:8500   -p 8600:53/udp   -v $WORKSPACE/docker/consul/config:/consul/config -d  ifanui/it-academy:latest"
 		}
         }
 	stage ('Check web service status on consul') {
