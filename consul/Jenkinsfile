@@ -13,7 +13,7 @@ pipeline {
         }
 	stage('Git push for repo') {
 	    steps {
-		sh 'cd  $WORKSPACE/docker | date > date.txt | git add date.txt | git commit -m "update repo $BUILD_ID" | git push -u origin master'
+		sh 'date > date.txt | git add date.txt | git commit -m "update repo $BUILD_ID" | git push -u origin master'
 		}
         }
 }
