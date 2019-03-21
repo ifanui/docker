@@ -30,6 +30,9 @@ pipeline {
             steps {
                 sh '''
 		curl http://127.0.0.1:8500/v1/health/service/web
+		curl http://127.0.0.1:8500/v1/health/service/consul
+		curl http://127.0.0.1:8500/v1/health/state/any
+		curl http://127.0.0.1:8500/v1/health/node/consul
                 '''
             }   
         }   
