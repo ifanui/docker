@@ -15,17 +15,17 @@ pipeline {
 	}
         stage('Docker pull from  docker hub') { 
             steps {
-		sh label: '', script: 'docker pull ${params.docker.hub}' 
+		sh 'docker pull ifanui/it-academy' 
             }
         }
 	stage('Docker run') {
 	    steps {
-		sh 'docker run   -p 8400:8400 -p 8500:8500   -p 8600:53/udp   -v $WORKSPACE/docker/consul/config:/consul/config -d  "${params.docker.hub}":latest'
+		sh 'docker run   -p 8400:8400 -p 8500:8500   -p 8600:53/udp   -v $WORKSPACE/docker/consul/config:/consul/config -d  ifanui/it-academy:latest'
 		}
         }
 	stage ('Check web service status on consul') {
 	    when {
-                expression {params.check_status == true}
+                expression {params.check_status == false}
             }   
             steps {
                 sh '''
@@ -40,7 +40,7 @@ pipeline {
             }
             steps {
                 sh '''
-                docker rm --force $(docker ps | grep "${params.docker.hub}":latest | tr -s ' ' | cut -d ' ' -f 1)
+                docker rm --force $(docker ps | grep ifanui/it-academy:latest | tr -s ' ' | cut -d ' ' -f 1)
                 '''
             }
         }
@@ -50,7 +50,7 @@ pipeline {
             }
             steps {
                 sh '''
-                docker rmi $(docker images | grep ${params.docker.hub}:latest | tr -s ' ' | cut -d ' ' -f 3)
+                docker rmi $(docker images | grep ifanui/it-academy:latest | tr -s ' ' | cut -d ' ' -f 3)
                 '''
             }
         }
