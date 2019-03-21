@@ -3,7 +3,7 @@ pipeline {
     parameters {
         string(name: 'repository_url', defaultValue: 'git@github.com:ifanui/docker.git', description: 'Git hub repository url')
 	string(name: 'docker.hub', defaultValue: 'ifanui/it-academy', description: 'Docker hub repository url')
-        booleanParam(name: 'cheack_status', defaultValue: true, description: 'Check status web service') 
+        booleanParam(name: 'check_status', defaultValue: true, description: 'Check status web service') 
 	booleanParam(name: 'clean_images', defaultValue: false, description: 'Delete all images after deploy coreos on coreos')
         booleanParam(name: 'clean_containers', defaultValue: true, description: 'Delete all containerss after deploy coreos on coreos')
     }
@@ -50,7 +50,7 @@ pipeline {
             }
             steps {
                 sh '''
-                docker rmi $(docker images | grep ifanui/it-academy:latest | tr -s ' ' | cut -d ' ' -f 3)
+		docker rmi $(docker images -q)
                 '''
             }
         }
