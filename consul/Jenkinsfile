@@ -42,7 +42,7 @@ pipeline {
                 expression {params.clean_containers == true}
             }
             steps {
-                sh "docker rm --force $(docker ps | grep ${params.docker_hub}:latest | tr -s ' ' | cut -d ' ' -f 1)"
+		sh 'docker rm $(docker ps -qa) -f'
             }
         }
         stage('Clean images from deploy') {
