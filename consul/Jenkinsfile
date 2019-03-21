@@ -13,7 +13,7 @@ pipeline {
                    git url: "${params.repository_url}"
 		}
 	}
-        stage("Docker pull $params.docker.hub") { 
+        stage('Docker pull "$params.docker.hub"') { 
             steps { 
                    sh "docker pull ${params.docker.hub}"
             }
