@@ -10,7 +10,7 @@ pipeline {
     stages {
 	stage (' Clone repository'){
 	     steps {
-                   git url "${params.repository_url}"
+                   git url: "${params.repository_url}"
 		}
 	}
         stage('Docker pull $params.docker.hub') { 
