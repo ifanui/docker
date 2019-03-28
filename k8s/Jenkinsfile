@@ -1,22 +1,27 @@
 pipeline { 
-    agent { node { label 'coreos' } }
+    agent { node { label 'master' } }
       stages {
-	stage ('Curl from remote repo to local minikube') {
-		steps {
-		  sh '''
- 			curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
- 			&& chmod +x minikube
-		     '''
-		      }
-		}	
-	stage ('Copy daemon minikube to /usr/bin') {
-		steps {
-	          sh "sudo mkdir -p /opt/minikube/bin && sudo cp minikube /opt/minikube/bin && rm minikube"
-			}
-		}
-	stage ('Run minikube with dashboard') {
-		steps {
-		  sh "/opt/minikube/bin/minikube start --no-vtx-check && /opt/minikube/bin/minikube dashboard"
+	stage ('Install VirtualBox to Ubuntu') {
+                steps {
+                  sh "sudo apt install -y vitrualbox virtualbox-ext-pack"
+                      }
+                }
+        stage ('Curl from remote repo to local minikube') {
+                steps {
+                  sh '''
+                        minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+                        && chmod +x minikube
+                     '''
+                      }
+                }
+        stage ('Copy daemon minikube to /usr/local/bin') {
+                steps {
+                  sh "sudo cp minikube /usr/local/bin/ && rm minikube"
+                        }
+                }
+        stage ('Run minikube with dashboard') {
+                steps {
+                  sh "minikube start && minikube dashboard"
 		      }
 		}
 	}
