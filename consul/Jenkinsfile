@@ -4,7 +4,7 @@ pipeline {
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
-    agent { node { label 'coreos' } }
+    agent { node { label 'ubuntu-aws' } }
     parameters {
         string(name: 'repository_url', defaultValue: 'git@github.com:ifanui/docker.git', description: 'Git hub repository url') 
 	booleanParam(name: 'clean_images', defaultValue: false, description: 'Delete all images after deploy coreos on coreos')
