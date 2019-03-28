@@ -3,7 +3,7 @@ pipeline {
       stages {
        	stage ('Install VirtualBox to Ubuntu') {
   		steps {
-		  sh "sudo apt install -y vitrualbox virtualbox-ext-pack"
+		  sh "sudo apt-get install -y vitrualbox virtualbox-ext-pack"
 		      }
 		}
 	stage ('Curl from remote repo to local minikube') {
