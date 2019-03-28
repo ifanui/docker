@@ -1,5 +1,5 @@
 pipeline { 
-    agent { node { label 'ubuntu-aws' } }
+    agent { node { label 'coreos' } }
       stages {
 	stage ('Curl from remote repo to local minikube') {
 		steps {
@@ -16,7 +16,7 @@ pipeline {
 		}
 	stage ('Run minikube with dashboard') {
 		steps {
-		  sh "minikube start && minikube dashboard"
+		  sh "minikube start --no-vtx-check && minikube dashboard"
 		      }
 		}
 	}
