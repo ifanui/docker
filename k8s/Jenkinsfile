@@ -11,9 +11,19 @@ pipeline {
 		  sh "sudo add-apt-repository 'deb http://download.virtualbox.org/virtualbox/debian xenial contrib'"
 			}
 		}
+	stage (' Install kubectl, which you use to interact with the Kubernetes cluster ') {
+		steps {
+		  sh "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - && echo 'deb https://apt.kubernetes.io/ kubernetes-xenial main' | sudo tee -a /etc/apt/sources.list.d/kubernetes.list"	
+			}
+		}
+	stage (' Install kubectl ') {
+		steps {
+		  sh "sudo apt-get update && sudo apt-get install -y kubectl"
+		 	}
+		}
 	stage ('Install VirtualBox to Ubuntu') {
                 steps {
-                  sh "sudo apt-get update -y && sudo apt-get install -y virtualbox-5.2"
+                  sh "sudo apt-get install -y virtualbox-5.2"
                       }
                 }
         stage ('Curl from remote repo to local minikube') {
