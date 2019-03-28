@@ -39,9 +39,9 @@ pipeline {
                   sh "sudo cp minikube /usr/local/bin/ && rm minikube"
                         }
                 }
-        stage ('Run minikube with dashboard') {
+        stage ('Run minikube with dashboard --url') {
                 steps {
-                  sh "minikube start --no-vtx-check && minikube dashboard"
+                  sh "minikube start --no-vtx-check && minikube dashboard --url"
 		      }
 		}
 	}
