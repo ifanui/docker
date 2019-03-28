@@ -3,7 +3,7 @@ pipeline {
       stages {
 	stage ('Add repo for VirtualBox') {
 		steps {
-		  sh "sudo add-apt-repository 'deb http://download.virtualbox.org/virtualbox/debian xenia'"
+		  sh "sudo add-apt-repository 'deb http://download.virtualbox.org/virtualbox/debian xenial contrib'"
 			}
 		}
 	stage ('Install VirtualBox to Ubuntu') {
