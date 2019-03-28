@@ -1,0 +1,28 @@
+pipeline { 
+    agent { node { label 'ubuntu-aws' } }
+      stages {
+       	stage ('Install VirtualBox to Ubuntu') {
+  		steps {
+		  sh "sudo apt install -y vitrualbox virtualbox-ext-pack"
+		      }
+		}
+	stage ('Curl from remote repo to local minikube') {
+		steps {
+		  sh '''
+ 			minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+ 			&& chmod +x minikube
+		     '''
+		      }
+		}	
+	stage ('Copy daemon minikube to /usr/local/bin') {
+		steps {
+	          sh "sudo cp minikube /usr/local/bin/ && rm minikube"
+			}
+		}
+	stage ('Run minikube with dashboard') {
+		steps {
+		  sh "minikube start && minikube dashboard"
+		      }
+		}
+	}
+}	
