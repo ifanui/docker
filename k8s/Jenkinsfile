@@ -11,12 +11,12 @@ pipeline {
 		}	
 	stage ('Copy daemon minikube to /usr/bin') {
 		steps {
-	          sh "sudo cp minikube /usr/bin && rm minikube"
+	          sh "sudo mkdir -p /opt/minikube/bin && sudo cp minikube /opt/minikube/bin && rm minikube"
 			}
 		}
 	stage ('Run minikube with dashboard') {
 		steps {
-		  sh "minikube start --no-vtx-check && minikube dashboard"
+		  sh "/opt/minikube/bin/minikube start --no-vtx-check && /opt/minikube/bin/minikube dashboard"
 		      }
 		}
 	}
