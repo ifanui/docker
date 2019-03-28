@@ -1,11 +1,6 @@
 pipeline { 
     agent { node { label 'ubuntu-aws' } }
       stages {
-       	stage ('Install VirtualBox to Ubuntu') {
-  		steps {
-		  sh "sudo apt-get install -y vitrualbox virtualbox-ext-pack"
-		      }
-		}
 	stage ('Curl from remote repo to local minikube') {
 		steps {
 		  sh '''
