@@ -31,7 +31,7 @@ pipeline {
                 }
         stage ('Run minikube with dashboard') {
                 steps {
-                  sh "minikube start && minikube dashboard"
+                  sh "minikube start --no-vtx-check && minikube dashboard"
 		      }
 		}
 	}
