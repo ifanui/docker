@@ -9,9 +9,9 @@ pipeline {
 		     '''
 		      }
 		}	
-	stage ('Copy daemon minikube to /usr/local/bin') {
+	stage ('Copy daemon minikube to /usr/bin') {
 		steps {
-	          sh "sudo cp minikube /usr/local/bin/ && rm minikube"
+	          sh "sudo cp minikube /usr/bin && rm minikube"
 			}
 		}
 	stage ('Run minikube with dashboard') {
