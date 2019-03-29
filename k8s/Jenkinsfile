@@ -1,8 +1,8 @@
 pipeline { 
     agent { node { label 'k8s' } }
 	parameters {
-		booleanParam(name: 'start_manikube', defaultValue: true, description: 'Start manikube with dashboard')
-		booleanParam(name: 'stop_manikube', defaultValue: false, description: 'Stop manikube')
+		booleanParam(name: 'start_minikube', defaultValue: true, description: 'Start minikube with dashboard')
+		booleanParam(name: 'stop_minikube', defaultValue: false, description: 'Stop minikube')
     }	
       stages {
 	stage ('Add key for installing VirtualBox') {
@@ -45,7 +45,7 @@ pipeline {
                 }
         stage ('Run minikube with dashboard --url') {
 		when {
-                	expression {params.start_manikube == true}
+                	expression {params.start_minikube == true}
           		  }
                 steps {
                   sh "sudo minikube start --vm-driver none && sudo kubectl proxy --address='0.0.0.0' --disable-filter=true && minikube dashboard --url"
@@ -53,7 +53,7 @@ pipeline {
 		}
 	stage ('Stop minikube') {
 		when {
-                	expression {params.stop_manikube == true}
+                	expression {params.stop_minikube == true}
           		  }
                 steps {
                   sh "sudo minikube stop"
