@@ -1,5 +1,9 @@
 pipeline { 
     agent { node { label 'k8s' } }
+	parameters {
+		booleanParam(name: 'start_manikube', defaultValue: true, description: 'Start manikube with dashboard')
+		booleanParam(name: 'stop_manikube', defaultValue: false, description: 'Stop manikube')
+    }	
       stages {
 	stage ('Add key for installing VirtualBox') {
 		steps {
