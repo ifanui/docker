@@ -56,7 +56,7 @@ pipeline {
                 	expression {params.stop_minikube == true}
           		  }
                 steps {
-                  sh "sudo minikube stop"
+                  sh "sudo minikube stop && sudo minikube delete -p minikube"
 		      }
 		}
 	}
