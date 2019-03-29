@@ -48,7 +48,7 @@ pipeline {
                 	expression {params.start_minikube == true}
           		  }
                 steps {
-                  sh "sudo minikube start --vm-driver none && sudo kubectl proxy --address='0.0.0.0' --disable-filter=true && minikube dashboard --url"
+                  sh "minikube start --vm-driver none && kubectl proxy --address='0.0.0.0' --disable-filter=true && minikube dashboard --url"
 		      }
 		}
 	stage ('Stop minikube') {
@@ -56,7 +56,7 @@ pipeline {
                 	expression {params.stop_minikube == true}
           		  }
                 steps {
-                  sh "sudo minikube stop && sudo minikube delete -p minikube"
+                  sh "minikube stop && minikube delete -p minikube"
 		      }
 		}
 	}
