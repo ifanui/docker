@@ -45,6 +45,9 @@ pipeline {
                 }
         stage ('Run minikube with dashboard --url') {
                 steps {
+		  when {
+                	expression {params.start_manikube == true}
+          		  }
                   sh "msudo minikube start --vm-driver none && sudo kubectl proxy --address='0.0.0.0' --disable-filter=true && minikube dashboard --url"
 		      }
 		}
