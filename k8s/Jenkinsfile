@@ -41,7 +41,7 @@ pipeline {
                 }
         stage ('Run minikube with dashboard --url') {
                 steps {
-                  sh "minikube start --no-vtx-check && minikube dashboard --url"
+                  sh "msudo minikube start --vm-driver none && sudo kubectl proxy --address='0.0.0.0' --disable-filter=true && minikube dashboard --url"
 		      }
 		}
 	}
