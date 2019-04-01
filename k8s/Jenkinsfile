@@ -61,12 +61,12 @@ pipeline {
                 	expression {params.start_minikube == true}
           		  }
 		steps {
-			def exists = fileExists '/usr/local/bin/minikube'
+			sh label: '', script: '''def exists = fileExists \'/usr/local/bin/minikube\'
 			if (exists) {
- 			   echo 'minikube daemon present in /usr/local/bin'
+ 			   echo \'minikube daemon present in /usr/local/bin\'
 				} else {
- 				   cp minikube /usr/local/bin/
-				}
+ 				   cp minikube /usr/local/bin/ && rm minikube
+				}'''
 		}
         stage ('Run minikube with dashboard --url') {
 		when {
