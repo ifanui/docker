@@ -79,7 +79,7 @@ pipeline {
                 	expression {params.start_minikube == true}
           		  }
 		steps {
-                  sh "sudo minikube dashboard --url"
+                  sh "sudo minikube dashboard --url &"
 		      }
 	}
 	stage ('Stop minikube') {
