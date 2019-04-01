@@ -65,7 +65,7 @@ pipeline {
 			if (exists) {
  			   echo 'minikube daemon present in /usr/local/bin'
 				} else {
- 				   cp minikube /usr/local/bin/ && rm minikube
+ 				   cp minikube /usr/local/bin/
 				}
 		}
         stage ('Run minikube with dashboard --url') {
