@@ -70,8 +70,12 @@ pipeline {
           		  }
                 steps {
                   sh '''
-			sudo minikube start --vm-driver none && sudo kubectl proxy --address=‘0.0.0.0’ --disable-filter=true &
+			sudo minikube start --vm-driver none && kubectl proxy --port=8080 --address='0.0.0.0' --disable-filter=true &
 		      '''
+		      }
+		}
+	        steps {
+                  sh ""sudo minikube dashboard --url"
 		      }
 		}
 	stage ('Stop minikube') {
