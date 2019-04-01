@@ -64,7 +64,7 @@ pipeline {
  		      sh "sudo cp -f minikube /usr/local/bin/ && rm minikube"
 			}
 		}
-        stage ('Run minikube with dashboard --url') {
+        stage ('Run minikube') {
 		when {
                 	expression {params.start_minikube == true}
           		  }
@@ -75,6 +75,9 @@ pipeline {
 		      }
 		}
 	stage ('Show dashboard') {
+		when {
+                	expression {params.start_minikube == true}
+          		  }
 		steps {
                   sh "sudo minikube dashboard --url"
 		      }
