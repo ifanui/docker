@@ -73,10 +73,12 @@ pipeline {
 			sudo minikube start --vm-driver none && kubectl proxy --port=8080 --address='0.0.0.0' --disable-filter=true &
 		      '''
 		      }
-	        steps {
+		}
+	stage ('Show dashboard') {
+		steps {
                   sh "sudo minikube dashboard --url"
 		      }
-		}
+	}
 	stage ('Stop minikube') {
 		when {
                 	expression {params.stop_minikube == true}
